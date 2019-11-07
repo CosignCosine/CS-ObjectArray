@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DAECF00B-C276-4D1A-9890-B1060229F361}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ObjectArray</RootNamespace>
+    <AssemblyName>CS-ObjectArray</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>AfterBuild</type>
+          <command>rm -rv "/Users/justaperson/Library/Application Support/Colossal Order/Cities_Skylines/Addons/Mods/${SolutionName}"</command>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>mkdir "/Users/justaperson/Library/Application Support/Colossal Order/Cities_Skylines/Addons/Mods/${SolutionName}"</command>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>mv "/Users/justaperson/Projects/${SolutionName}/${SolutionName}/bin/Debug/${SolutionName}.dll" "/Users/justaperson/Library/Application Support/Colossal Order/Cities_Skylines/Addons/Mods/${SolutionName}/"</command>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>cp -a "/Users/justaperson/Projects/${SolutionName}/${SolutionName}/lib/." "/Users/justaperson/Library/Application Support/Colossal Order/Cities_Skylines/Addons/Mods/${SolutionName}/"</command>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\Library\Application Support\Steam\steamapps\common\Cities_Skylines\Cities.app\Contents\Resources\Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ColossalManaged">
+      <HintPath>..\..\..\Library\Application Support\Steam\steamapps\common\Cities_Skylines\Cities.app\Contents\Resources\Data\Managed\ColossalManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="ICities">
+      <HintPath>..\..\..\Library\Application Support\Steam\steamapps\common\Cities_Skylines\Cities.app\Contents\Resources\Data\Managed\ICities.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Library\Application Support\Steam\steamapps\common\Cities_Skylines\Cities.app\Contents\Resources\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ObjectArrayMod.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ObjectArrayTool.cs" />
+    <Compile Include="ElekUtil.cs" />
+    <Compile Include="ObjectArrayLoading.cs" />
+    <Compile Include="ObjectArrayObjectWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
